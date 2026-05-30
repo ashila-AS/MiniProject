@@ -5,7 +5,7 @@ import os
 from data_generation import generate_data
 from matrix_regression import least_squares_regression, save_matrix_results
 from evaluation import evaluasi_model
-from visualization import buat_visualisasi  # ← Rai perlu rename fungsinya jadi ini
+from visualization import buat_visualisasi
 
 # Buat folder output
 os.makedirs("output", exist_ok=True)
@@ -27,14 +27,14 @@ print(f"      β₀ = {beta0:.4f}")
 print(f"      β₁ = {beta1:.4f}")
 print(f"      Persamaan: y = {beta0:.4f} + {beta1:.4f}x")
 
-# ── STEP 3 — Neztt ──
+# ── STEP 3 — Neysa ──
 print("\n[2/3] Evaluasi model...")
 y_pred, r, SSE, TSS, R2 = evaluasi_model(x, y, beta0, beta1)
 print(f"      SSE = {SSE:.4f}")
 print(f"      TSS = {TSS:.4f}")
 print(f"      R²  = {R2:.4f}")
 
-# ── STEP 4 — Rai ──
+# ── STEP 4 — Rainissa ──
 print("\n[3/3] Membuat visualisasi...")
 buat_visualisasi(x, y, y_pred, r, beta0, beta1, R2)
 print(f"      scatter_regression.png tersimpan")
