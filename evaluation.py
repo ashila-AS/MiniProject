@@ -29,7 +29,7 @@ def evaluasi_model(x, y, beta0, beta1):
         interpretasi = f"Model kurang fit — hanya menjelaskan {R2*100:.2f}% variasi data."
     
     # Simpan hasil ke file teks (untuk laporan)
-    with open("output/hasil_evaluasi.txt", "w") as f:
+    with open("output/hasil_evaluasi.txt", "w", encoding="utf-8") as f:
         f.write("=" * 45 + "\n")
         f.write("         HASIL EVALUASI MODEL\n")
         f.write("=" * 45 + "\n")

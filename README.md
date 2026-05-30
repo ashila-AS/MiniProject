@@ -1,6 +1,6 @@
 # Mini Project — Least Squares Regression
 
-Implementasi metode **Least Squares Regression** menggunakan Python untuk mencari garis regresi terbaik berdasarkan data yang dibangkitkan secara acak.
+Implementasi **Least Squares Regression** menggunakan Python untuk menentukan garis regresi terbaik dari sekumpulan data menggunakan pendekatan matriks.
 
 **Mata Kuliah:** Aljabar Linear
 **Program Studi:** D3 Teknik Informatika
@@ -10,42 +10,43 @@ Implementasi metode **Least Squares Regression** menggunakan Python untuk mencar
 
 ## Deskripsi Project
 
-Project ini bertujuan untuk menerapkan konsep **Regresi Linear Sederhana** dan **Metode Kuadrat Terkecil (Least Squares Method)** menggunakan pendekatan matriks.
+Project ini bertujuan untuk menerapkan konsep **Regresi Linear Sederhana** dan **Metode Kuadrat Terkecil (Least Squares Method)** yang dipelajari pada mata kuliah Aljabar Linear.
 
-Sebanyak **20 titik data** dibangkitkan dari model:
+Sebanyak **20 titik data** dibangkitkan secara acak berdasarkan model:
 
-[
-y = 2 + 3x + \varepsilon
-]
+y = 2 + 3x + ε
 
 dengan:
 
-* (x) : variabel independen
-* (y) : variabel dependen
-* (\varepsilon \sim N(0, 0.5^2)) : noise acak berdistribusi normal
+* x : variabel independen
+* y : variabel dependen
+* ε ~ N(0, 0.5²) : noise acak berdistribusi normal
 
-Parameter regresi dihitung menggunakan persamaan normal:
+Parameter regresi dihitung menggunakan Persamaan Normal (Normal Equation):
 
-[
-\hat{\beta} = (A^T A)^{-1} A^T b
-]
+β̂ = (AᵀA)⁻¹ Aᵀb
 
-Hasil model kemudian dievaluasi menggunakan:
+Hasil regresi kemudian dievaluasi menggunakan beberapa metrik untuk mengetahui kualitas model.
 
-* Residual
-* SSE (Sum of Squared Errors)
-* TSS (Total Sum of Squares)
-* Coefficient of Determination ((R^2))
+---
+
+## Tujuan Project
+
+* Memahami konsep Least Squares Regression
+* Mengimplementasikan operasi matriks dalam Python
+* Menghitung parameter regresi secara numerik
+* Mengevaluasi kualitas model menggunakan SSE, TSS, dan R²
+* Memvisualisasikan hasil regresi dan residual
 
 ---
 
 ## Anggota Kelompok
 
-| No | Nama                | Tanggung Jawab                          |
-| -- | ------------------- | --------------------------------------- |
-| 1  | Ashila Aulia Salwa  | Data Generation & Perhitungan Matriks   |
-| 2  | R. Neysa Rahma Velda| Evaluasi Model (Residual, SSE, TSS, R²) |
-| 3  | Rainissa Azizah     | Visualisasi Data & Penyusunan Laporan   |
+| No | Nama                 | Tanggung Jawab                          |
+| -- | -------------------- | --------------------------------------- |
+| 1  | Ashila Aulia Salwa   | Data Generation & Perhitungan Matriks   |
+| 2  | R. Neysa Rahma Velda | Evaluasi Model (Residual, SSE, TSS, R²) |
+| 3  | Rainissa Azizah      | Visualisasi Data & Penyusunan Laporan   |
 
 ---
 
@@ -68,10 +69,23 @@ mini-project-least-squares/
 ├── laporan/
 │
 ├── requirements.txt
+├── .gitignore
 └── README.md
 ```
 
----
+## Library yang Digunakan
+
+Project ini menggunakan beberapa library Python:
+
+* numpy
+* matplotlib
+* pandas
+
+Install seluruh dependency dengan:
+
+```bash
+pip install -r requirements.txt
+```
 
 ## Instalasi
 
@@ -98,53 +112,54 @@ Jalankan program utama:
 python main.py
 ```
 
+Program akan menjalankan tiga tahap utama:
+
+1. Generate data dan menghitung parameter regresi
+2. Mengevaluasi model menggunakan SSE, TSS, dan R²
+3. Membuat visualisasi regresi dan residual
+
+### Catatan
+
+Saat program dijalankan, akan muncul **dua jendela visualisasi**:
+
+1. Scatter Plot dan Garis Regresi
+2. Residual Plot
+
+Tutup kedua jendela tersebut agar program dapat selesai dijalankan dan terminal kembali aktif.
+
 ---
 
 ## Output
 
-Program akan menghasilkan:
+Program akan menghasilkan beberapa file pada folder `output/`:
 
-### 1. Scatter Plot & Garis Regresi
+| File                   | Deskripsi                          |
+| ---------------------- | ---------------------------------- |
+| scatter_regression.png | Visualisasi data dan garis regresi |
+| residual_plot.png      | Visualisasi residual model         |
+| result.txt             | Hasil evaluasi model               |
 
-Visualisasi data hasil pembangkitan beserta garis regresi terbaik.
-
-```text
-output/scatter_regression.png
-```
-
-### 2. Residual Plot
-
-Visualisasi distribusi residual terhadap nilai prediksi.
+Contoh isi `result.txt`:
 
 ```text
-output/residual_plot.png
-```
+β₀ = 2.1743
+β₁ = 2.9792
 
-### 3. Hasil Evaluasi
-
-Berisi parameter regresi dan metrik evaluasi model.
-
-```text
-output/result.txt
-```
-
-Contoh:
-
-```text
-β0 = 2.08
-β1 = 2.94
-
-SSE = 4.13
-TSS = 152.78
-R²  = 0.973
+SSE = 2.9355
+TSS = 1368.1301
+R²  = 0.9979
 ```
 
 ---
 
 ## Konsep yang Digunakan
 
+Project ini mengimplementasikan beberapa konsep Aljabar Linear dan Analisis Data:
+
 * Sistem Persamaan Linear
 * Operasi Matriks
+* Matrix Multiplication
+* Matrix Inverse
 * Least Squares Regression
 * Residual Analysis
 * Sum of Squared Errors (SSE)
@@ -154,6 +169,32 @@ R²  = 0.973
 
 ---
 
+## Interpretasi Hasil
+
+Berdasarkan hasil pengujian:
+
+```text
+SSE = 2.9355
+TSS = 1368.1301
+R² = 0.9979
+```
+
+Nilai R² sebesar **0.9979** menunjukkan bahwa model regresi mampu menjelaskan sekitar **99.79% variasi data**, sehingga model dapat dianggap sangat baik dalam merepresentasikan hubungan antara variabel x dan y.
+
+---
+
+## Visualisasi
+
+### Scatter Plot dan Garis Regresi
+
+![Scatter Plot](output/scatter_regression.png)
+
+### Residual Plot
+
+![Residual Plot](output/residual_plot.png)
+
+---
+
 ## Lisensi
 
-Project ini dibuat untuk keperluan akademik pada mata kuliah Aljabar Linear.
+Project ini dibuat untuk keperluan akademik pada mata kuliah Aljabar Linear, D3 Teknik Informatika, Politeknik Negeri Bandung.
