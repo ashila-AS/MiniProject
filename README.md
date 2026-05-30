@@ -1,6 +1,6 @@
 # Mini Project — Least Squares Regression
 
-Implementasi **Least Squares Regression** menggunakan Python untuk menentukan garis regresi terbaik dari sekumpulan data menggunakan pendekatan matriks.
+Implementasi **Least Squares Regression** menggunakan Python untuk menentukan garis regresi terbaik dari sekumpulan data menggunakan pendekatan Persamaan Normal (*Normal Equation*).
 
 **Mata Kuliah:** Aljabar Linear
 **Program Studi:** D3 Teknik Informatika
@@ -8,193 +8,290 @@ Implementasi **Least Squares Regression** menggunakan Python untuk menentukan ga
 
 ---
 
-## Deskripsi Project
+# Deskripsi Project
 
-Project ini bertujuan untuk menerapkan konsep **Regresi Linear Sederhana** dan **Metode Kuadrat Terkecil (Least Squares Method)** yang dipelajari pada mata kuliah Aljabar Linear.
+Project ini mengimplementasikan regresi linear sederhana menggunakan metode **Least Squares**.
 
-Sebanyak **20 titik data** dibangkitkan secara acak berdasarkan model:
+Data dibangkitkan berdasarkan model:
 
-y = 2 + 3x + ε
+[
+y = \beta_0 + \beta_1x + \varepsilon
+]
 
-dengan:
+dengan parameter:
 
-* x : variabel independen
-* y : variabel dependen
-* ε ~ N(0, 0.5²) : noise acak berdistribusi normal
+* β₀ = 2
+* β₁ = 3
+* ε ~ N(0, 0.5²)
 
-Parameter regresi dihitung menggunakan Persamaan Normal (Normal Equation):
+Nilai x dibangkitkan secara seragam menggunakan:
 
-β̂ = (AᵀA)⁻¹ Aᵀb
+```python
+np.linspace(0, 10, 20)
+```
 
-Hasil regresi kemudian dievaluasi menggunakan beberapa metrik untuk mengetahui kualitas model.
+Parameter regresi dihitung menggunakan Persamaan Normal:
 
----
-
-## Tujuan Project
-
-* Memahami konsep Least Squares Regression
-* Mengimplementasikan operasi matriks dalam Python
-* Menghitung parameter regresi secara numerik
-* Mengevaluasi kualitas model menggunakan SSE, TSS, dan R²
-* Memvisualisasikan hasil regresi dan residual
+[
+\hat{\beta} = (A^T A)^{-1} A^T b
+]
 
 ---
 
-## Anggota Kelompok
+# Tujuan Project
 
-| No | Nama                 | Tanggung Jawab                          |
-| -- | -------------------- | --------------------------------------- |
-| 1  | Ashila Aulia Salwa   | Data Generation & Perhitungan Matriks   |
-| 2  | R. Neysa Rahma Velda | Evaluasi Model (Residual, SSE, TSS, R²) |
-| 3  | Rainissa Azizah      | Visualisasi Data & Penyusunan Laporan   |
+* Memahami konsep Least Squares Regression.
+* Mengimplementasikan operasi matriks menggunakan Python.
+* Membentuk matriks desain regresi.
+* Menghitung parameter regresi menggunakan Persamaan Normal.
+* Mengevaluasi kualitas model menggunakan SSE, TSS, dan R².
+* Membuat visualisasi hasil regresi dan residual.
 
 ---
 
-## Struktur Project
+# Anggota Kelompok
+
+| No | Nama                 | Tanggung Jawab                        |
+| -- | -------------------- | ------------------------------------- |
+| 1  | Ashila Aulia Salwa   | Data Generation & Perhitungan Matriks |
+| 2  | R. Neysa Rahma Velda | Evaluasi Model                        |
+| 3  | Rainissa Azizah      | Visualisasi & Dokumentasi             |
+
+---
+
+# Struktur Project
 
 ```text
-mini-project-least-squares/
+MiniProject/
 │
 ├── data_generation.py
 ├── matrix_regression.py
 ├── evaluation.py
 ├── visualization.py
 ├── main.py
+├── requirements.txt
+├── README.md
 │
 ├── output/
+│   ├── matrices.txt
+│   ├── hasil_evaluasi.txt
 │   ├── scatter_regression.png
-│   ├── residual_plot.png
-│   └── result.txt
+│   └── residual_plot.png
 │
-├── laporan/
-│
-├── requirements.txt
-├── .gitignore
-└── README.md
-```
-
-## Library yang Digunakan
-
-Project ini menggunakan beberapa library Python:
-
-* numpy
-* matplotlib
-* pandas
-
-Install seluruh dependency dengan:
-
-```bash
-pip install -r requirements.txt
-```
-
-## Instalasi
-
-Clone repository:
-
-```bash
-git clone <repository-url>
-cd mini-project-least-squares
-```
-
-Install dependency:
-
-```bash
-pip install -r requirements.txt
+└── laporan/
+    └── gambar/
+        ├── scatter_regression.png
+        └── residual_plot.png
 ```
 
 ---
 
-## Menjalankan Program
+# Library yang Digunakan
 
-Jalankan program utama:
+Project menggunakan library berikut:
+
+* numpy
+* matplotlib
+
+Instalasi dependency:
+
+```bash
+pip install -r requirements.txt
+```
+
+atau
+
+```bash
+pip install numpy matplotlib
+```
+
+---
+
+# Cara Menjalankan Program
+
+Pastikan seluruh dependency telah terinstal.
+
+Jalankan program menggunakan perintah:
 
 ```bash
 python main.py
 ```
 
-Program akan menjalankan tiga tahap utama:
+Program akan menjalankan tahapan berikut:
 
-1. Generate data dan menghitung parameter regresi
-2. Mengevaluasi model menggunakan SSE, TSS, dan R²
-3. Membuat visualisasi regresi dan residual
-
-### Catatan
-
-Saat program dijalankan, akan muncul **dua jendela visualisasi**:
-
-1. Scatter Plot dan Garis Regresi
-2. Residual Plot
-
-Tutup kedua jendela tersebut agar program dapat selesai dijalankan dan terminal kembali aktif.
+1. Membangkitan data regresi.
+2. Membentuk matriks regresi.
+3. Menghitung parameter β₀ dan β₁ menggunakan metode Least Squares.
+4. Mengevaluasi model menggunakan SSE, TSS, dan R².
+5. Menyimpan hasil perhitungan ke folder output.
+6. Menampilkan visualisasi scatter plot dan garis regresi.
+7. Menampilkan visualisasi residual plot.
 
 ---
 
-## Output
+# Cara Keluar dari Program
 
-Program akan menghasilkan beberapa file pada folder `output/`:
+Program menggunakan Matplotlib untuk menampilkan grafik.
 
-| File                   | Deskripsi                          |
-| ---------------------- | ---------------------------------- |
-| scatter_regression.png | Visualisasi data dan garis regresi |
-| residual_plot.png      | Visualisasi residual model         |
-| result.txt             | Hasil evaluasi model               |
+Visualisasi akan muncul **satu per satu**, sehingga pengguna perlu menutup jendela grafik yang sedang aktif agar program dapat melanjutkan ke tahap berikutnya.
 
-Contoh isi `result.txt`:
+### Langkah 1
+
+Setelah grafik **Scatter Plot dan Garis Regresi** muncul:
+
+* Tutup jendela grafik dengan menekan tombol **X**.
+* Program akan melanjutkan ke visualisasi berikutnya.
+
+### Langkah 2
+
+Setelah grafik **Residual Plot** muncul:
+
+* Tutup kembali jendela grafik dengan menekan tombol **X**.
+* Program akan selesai dijalankan dan kembali ke terminal.
+
+---
+
+# Alur Eksekusi Program
 
 ```text
-β₀ = 2.1743
-β₁ = 2.9792
-
-SSE = 2.9355
-TSS = 1368.1301
-R²  = 0.9979
+Jalankan main.py
+        │
+        ▼
+Generate Data
+        │
+        ▼
+Bentuk Matriks
+        │
+        ▼
+Hitung Regresi
+        │
+        ▼
+Evaluasi Model
+        │
+        ▼
+Simpan Hasil ke Folder Output
+        │
+        ▼
+Tampilkan Scatter Plot
+        │
+   (Tutup Window)
+        ▼
+Tampilkan Residual Plot
+        │
+   (Tutup Window)
+        ▼
+Program Selesai
 ```
 
 ---
 
-## Konsep yang Digunakan
+# Contoh Output Terminal
 
-Project ini mengimplementasikan beberapa konsep Aljabar Linear dan Analisis Data:
+```text
+==================================================
+   MINI PROJECT — LEAST SQUARES REGRESSION
+==================================================
 
+[1/3] Generate data & hitung regresi...
+      β₀ = 1.8630
+      β₁ = 3.0241
+      Persamaan: y = 1.8630 + 3.0241x
+
+[2/3] Evaluasi model...
+      SSE = 3.4896
+      TSS = 1688.1452
+      R²  = 0.9979
+
+[3/3] Membuat visualisasi...
+      scatter_regression.png tersimpan
+      residual_plot.png tersimpan
+
+==================================================
+   SEMUA SELESAI!
+   Cek folder output/
+==================================================
+```
+
+---
+
+# File Output
+
+Program menghasilkan beberapa file pada folder `output/`.
+
+| File                   | Deskripsi                                             |
+| ---------------------- | ----------------------------------------------------- |
+| matrices.txt           | Matriks desain, matriks normal, dan parameter regresi |
+| hasil_evaluasi.txt     | Nilai SSE, TSS, R², dan residual                      |
+| scatter_regression.png | Grafik scatter plot dan garis regresi                 |
+| residual_plot.png      | Grafik residual                                       |
+
+---
+
+# Hasil Regresi
+
+Contoh hasil yang diperoleh:
+
+```text
+β₀ = 1.862958
+β₁ = 3.024115
+```
+
+Persamaan regresi:
+
+```text
+y = 1.862958 + 3.024115x
+```
+
+---
+
+# Hasil Evaluasi
+
+```text
+SSE = 3.4896
+TSS = 1688.1452
+R²  = 0.9979
+```
+
+Interpretasi:
+
+Model memiliki nilai R² yang sangat mendekati 1, sehingga garis regresi mampu menjelaskan hampir seluruh variasi data yang diamati.
+
+---
+
+# Konsep Aljabar Linear yang Digunakan
+
+* Matriks Desain (*Design Matrix*)
+* Transpose Matriks
+* Perkalian Matriks
+* Invers Matriks
 * Sistem Persamaan Linear
-* Operasi Matriks
-* Matrix Multiplication
-* Matrix Inverse
+* Persamaan Normal (*Normal Equation*)
 * Least Squares Regression
 * Residual Analysis
 * Sum of Squared Errors (SSE)
 * Total Sum of Squares (TSS)
 * Coefficient of Determination (R²)
-* Data Visualization
 
 ---
 
-## Interpretasi Hasil
-
-Berdasarkan hasil pengujian:
-
-```text
-SSE = 2.9355
-TSS = 1368.1301
-R² = 0.9979
-```
-
-Nilai R² sebesar **0.9979** menunjukkan bahwa model regresi mampu menjelaskan sekitar **99.79% variasi data**, sehingga model dapat dianggap sangat baik dalam merepresentasikan hubungan antara variabel x dan y.
-
----
-
-## Visualisasi
+# Visualisasi
 
 ### Scatter Plot dan Garis Regresi
 
-![Scatter Plot](output/scatter_regression.png)
+Menampilkan titik data hasil pembangkitan serta garis regresi yang diperoleh dari metode Least Squares.
 
 ### Residual Plot
 
-![Residual Plot](output/residual_plot.png)
+Menampilkan distribusi residual untuk membantu mengevaluasi kualitas model regresi.
 
 ---
 
-## Lisensi
+# Catatan
 
-Project ini dibuat untuk keperluan akademik pada mata kuliah Aljabar Linear, D3 Teknik Informatika, Politeknik Negeri Bandung.
+Selama jendela visualisasi masih terbuka, program akan berhenti sementara (*blocking process*). Oleh karena itu, pengguna harus menutup jendela grafik yang aktif untuk melanjutkan proses program hingga selesai.
+
+---
+
+# Lisensi
+
+Project ini dibuat untuk keperluan akademik pada mata kuliah Aljabar Linear Program Studi D3 Teknik Informatika Politeknik Negeri Bandung.

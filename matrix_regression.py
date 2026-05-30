@@ -37,7 +37,6 @@ def least_squares_regression(x, y):
     ATA = AT @ A
     ATb = AT @ b
 
-    # Menyelesaikan persamaan linear
     beta = np.linalg.solve(ATA, ATb)
 
     beta0 = float(beta[0, 0])
@@ -60,11 +59,9 @@ def save_matrix_results(result, filename="output/matrices.txt"):
     """
     Menyimpan hasil matriks ke file txt dengan format yang rapi.
     """
-    # Menggunakan Path untuk membuat direktori secara aman
-    output_path = Path(filename)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path = Path(filename)  
+    output_path.parent.mkdir(parents=True, exist_ok=True)  
 
-    # Konfigurasi cetak NumPy agar tidak terpotong (...) di file teks
     opt = {"max_line_width": 100, "precision": 4, "suppress_small": True}
 
     with open(output_path, "w", encoding="utf-8") as file:
